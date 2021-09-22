@@ -1,118 +1,56 @@
-//Can you fix me?
-//well you kinda have no choice
 
 #include "mbed.h"
 
-// Create a thread to drive an LED to have an on time of _______ms and off time
-// _______ms
+// Create a thread to drive an LED to have an on time of 2000ms and off time of 500ms
 
 Thread controller;
-//what is a thread?? eh like something tottaly Real time like. 
-
-void saveTheWorld(); //someone has to right?
-
-DigitalOut fire(LED2); // establish blue led as an output
-int unicorn=0; InterruptIn cherish(BUTTON1); void live_or_die(); int zombie = 0;
-void wrong_or_not();
 
 
+void TimedLEDToggle(); 
+void HoldingButton();
+void CountPresses();
 
+DigitalOut BlueLED(LED2); // establish blue led as an output
+InterruptIn Button1(BUTTON1); 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+int oddPress = 0; 
+int buttonHeld = 0;
 
 int main() {
-  // start the allowed execution of the thread
-  printf("----------------START----------------\n");
-	printf("Starting state of thread: %d\n", controller.get_state());
-  controller.start(saveTheWorld);
-			printf("State of thread right after start: %d\n", controller.get_state());
-  cherish.rise(live_or_die);
-	cherish.fall(wrong_or_not);
-	//https://youtu.be/XN2FrUUq-zI 
-
-  return 0;
+    // start the allowed execution of the thread
+    printf("----------------START----------------\n");
+    printf("Starting state of thread: %d\n", controller.get_state());
+    controller.start(TimedLEDToggle);
+    printf("State of thread right after start: %d\n", controller.get_state());
+    //On the rising edge (when pressed), call HoldingButton
+    Button1.rise(HoldingButton);
+    //On the falling edge (release), call CountPresses
+    Button1.fall(CountPresses);
+    return 0;
 }
 
-// make the handler
-void saveTheWorld() {
-while (true) {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-if(unicorn==0){
-fire = !fire;
-printf("What did I just do????"); //you do need to update the print statement to be correct
-thread_sleep_for(2000); //Thread_sleep is a time delay function, causes a 2000 unit delay
-fire = !fire;
-printf("Did I do it again??????"); thread_sleep_for(500); //Thread_sleep is a time delay function, causes a 500 unit delay
-}
-  }
+void TimedLEDToggle() {
+    while (true) {
+        //Only do this every other press, starting with the first
+        if(oddPress == 0){
+            BlueLED = !BlueLED;
+            printf("Toggled Blue LED on");
+            thread_sleep_for(2000);
+            BlueLED = !BlueLED;
+            printf("Toggled Blue LED off"); 
+            thread_sleep_for(500); 
+        }
+    }
 }
 
-void live_or_die() {
-												  // togle the state of the thread
-												  
-												  
-												  
-												  
-												  
-												  // set flag...this is where we end
-													zombie=1;
+void HoldingButton() {
+	buttonHeld = 1;
 }
 
-void wrong_or_not() {
-  if (zombie==1){
-	  
-	  
-	  
-	  
-    unicorn++; 
-	
-	
-	
-    unicorn %= 2; 						    zombie=0;
-}}
+void CountPresses() {
+    if (buttonHeld == 1){
+        oddPress++; 
+        oddPress %= 2;
+        buttonHeld = 0;
+    }
+}
