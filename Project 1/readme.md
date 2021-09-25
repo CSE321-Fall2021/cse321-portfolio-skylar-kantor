@@ -48,11 +48,13 @@ API and Built In Elements Used
 Custom Functions
 ----------
 
-saveTheWorldssss:
-	Does savomg ps somentjinmg. 
+TimedLEDToggle:
+	Toggles the LED on for 500ms and off for 2000ms every other time Button 1 is pressed. 
 	Inputs:
 		None
-	Globally referenced things used:
-	Unicorns and fire, pringtf isglobal too
+HoldingButton:
+    Sets a flag variable to 1, indicating that Button 1 has been pressed.
+    Inputs: 
+        None
 
 
