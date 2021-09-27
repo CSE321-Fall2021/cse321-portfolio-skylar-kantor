@@ -1,7 +1,28 @@
-
+/**
+*File: CSE321_project1_alexkant_corrected_code.cpp
+*Author Skylar Kantor (alexkant@buffalo.edu)
+*Date: Fall 2021
+*Partner: None
+*Course: CSE 321
+*Assignent: Project 1
+*Inputs: Button1 (PC_13)
+*Outputs: LED2 (PB_7)
+*Constraints: None
+*Modules/Subroutines: 
+TimedLEDToggle:
+	Toggles the LED on for 500ms and off for 2000ms every other time Button 1 is pressed. 
+	Inputs:
+		None
+HoldingButton:
+    Sets a flag variable to 1, indicating that Button 1 has been pressed.
+    Inputs: 
+        None
+*Sources: Provided code
+*File Summary: Create a thread to drive an LED to have an on time of 2000ms and off time of 500ms, every other time button 1 is pressed
+*/
 #include "mbed.h"
 
-// Create a thread to drive an LED to have an on time of 2000ms and off time of 500ms
+
 
 Thread controller;
 
@@ -46,7 +67,7 @@ void TimedLEDToggle() {
 
 void HoldingButton() {
     // togle the state of the thread
-	buttonHeld = 1;
+    buttonHeld = 1;
 }
 
 void CountPresses() {
