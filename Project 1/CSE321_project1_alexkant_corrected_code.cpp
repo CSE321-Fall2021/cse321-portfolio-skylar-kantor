@@ -53,7 +53,7 @@ void TimedLEDToggle()
 {
     while (true) 
     {
-        //Only do this every other press, starting with the first
+        //Only do this every other press
         if(oddPress == 0)
         {
             BlueLED = !BlueLED;
