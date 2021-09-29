@@ -22,10 +22,7 @@ HoldingButton:
 */
 #include "mbed.h"
 
-
-
 Thread controller;
-
 
 void TimedLEDToggle(); 
 void HoldingButton();
@@ -37,7 +34,8 @@ InterruptIn Button1(BUTTON1);
 int oddPress = 0; 
 int buttonHeld = 0;
 
-int main() {
+int main() 
+{
     // start the allowed execution of the thread
     printf("----------------START----------------\n");
     printf("Starting state of thread: %d\n", controller.get_state());
@@ -51,10 +49,13 @@ int main() {
 }
 
 //make the handler
-void TimedLEDToggle() {
-    while (true) {
+void TimedLEDToggle() 
+{
+    while (true) 
+    {
         //Only do this every other press, starting with the first
-        if(oddPress == 0){
+        if(oddPress == 0)
+        {
             BlueLED = !BlueLED;
             printf("Toggled Blue LED on"); 
             thread_sleep_for(2000); //Thread_sleep is a time delay function, causes a 2000 unit delay
@@ -65,13 +66,16 @@ void TimedLEDToggle() {
     }
 }
 
-void HoldingButton() {
+void HoldingButton() 
+{
     // togle the state of the thread
     buttonHeld = 1;
 }
 
-void CountPresses() {
-    if (buttonHeld == 1){
+void CountPresses() 
+{
+    if (buttonHeld == 1)
+    {
         //determine whether the next press will be odd (1) or even (0)
         oddPress++; 
         oddPress %= 2;
