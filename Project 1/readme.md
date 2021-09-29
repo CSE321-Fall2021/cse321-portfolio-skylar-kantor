@@ -75,7 +75,7 @@ void HoldingButton:
 
    Inputs: 
 
-       None
+      None
 
 void CountPresses:
 
@@ -83,6 +83,6 @@ Determines whether the next press is even or odd using the oddPress variable, an
 
    Inputs:
 
-       None
+      None
 
 
