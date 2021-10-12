@@ -5,7 +5,7 @@
 
 #include "mbed.h"
 /**
-*File: main.cpp
+*File: CSE321_project1_alexkant_template.cpp
 *Author Skylar Kantor (alexkant@buffalo.edu)
 *Date: Fall 2021
 *Partner: 
