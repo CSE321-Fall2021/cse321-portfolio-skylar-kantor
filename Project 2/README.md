@@ -27,6 +27,11 @@ Resources and References
 --------------------
 HOW TO MAKE A README.TXT FILE (https://libraries.ou.edu/content/how-make-readmetxt-file)
 
+--------------------
+Getting Started
+--------------------
+
+
 
 --------------------
 CSE321_project2_alexkant_main.cpp:
