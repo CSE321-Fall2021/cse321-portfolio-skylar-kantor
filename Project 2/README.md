@@ -7,7 +7,12 @@ A timer, with an LCD screen, LED lights and a keypad, capable of counting down f
 Contribitor List:
 
 Skylar Kantor (alexkant@buffalo.edu)
-
+--------------------
+Features
+--------------------
+-Counts down from any time less than or equal to 9min 59sec
+-Runs indefinitely
+-User input for time
 --------------------
 Required Materials
 --------------------
@@ -26,7 +31,7 @@ HOW TO MAKE A README.TXT FILE (https://libraries.ou.edu/content/how-make-readmet
 --------------------
 CSE321_project2_alexkant_main.cpp:
 --------------------
-
+This file is where the handling of the keypresses occurs, as well as the timing itself
 
 ----------
 Variables Declared
