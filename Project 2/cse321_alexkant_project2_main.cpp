@@ -25,6 +25,8 @@ void three(void);
 void A(void);
 
 void timing(void);
+void displayTime(void);
+
 
 // interrupt handlers for each collumn
 InterruptIn oneToSeven(PB_8);  // D15
@@ -49,7 +51,10 @@ int thirdDigit = 0;
 int enteringTime = 0;
 int timeRunning = 1;
 
-char i = 0;
+ char remainingTime[4];
+
+ int storedTime = 0;
+
 CSE321_LCD display(16, 2, LCD_5x10DOTS, PF_0, PF_1);
 
 int main() {
@@ -123,16 +128,7 @@ int main() {
       // So that the user can see what time they've entered, display it here to
       // them as they type
       display.setCursor(0, 1);
-      char remainingTime[4];
-      remainingTime[0] =
-          '0' + firstDigit; //'0' is the character representation of the number
-                            // 0 and since the ASCII values for numbers 0-9 are
-                            // in order we can just add the digit to it
-      remainingTime[1] = ':';
-      remainingTime[2] = '0' + secondDigit;
-      remainingTime[3] = '0' + thirdDigit;
-      display.print(remainingTime); // print out the string representation of
-                                    // the 3 digits of time we have
+      displayTime();
     }
   }
 }
@@ -148,16 +144,7 @@ void timing(void) {
     display.print("Time Remaining:");
     display.setCursor(0, 1); // Move the cursor down to print the time because
                              // we don't have enough room on row 0
-    char remainingTime[4];
-    remainingTime[0] =
-        '0' + firstDigit; //'0' is the character representation of the number 0
-                          // and since the ASCII values for numbers 0-9 are in
-                          // order we can just add the digit to it
-    remainingTime[1] = ':';
-    remainingTime[2] = '0' + secondDigit;
-    remainingTime[3] = '0' + thirdDigit;
-    display.print(remainingTime); // print out the string representation of the
-                                  // 3 digits of time we have
+    displayTime();
     totalTime--;                  // Take one second off the remaining time
     if (thirdDigit > 0)
       thirdDigit--; // If there's a digit in the seconds place, subtract one
@@ -240,6 +227,7 @@ void KeypressHandler(int col) {
     {
       firstDigit = newTime;
       totalTime += newTime * 60;
+      storedTime += totalTime;
     } else if (timePos == 1 &&
                newTime <
                    6) // If this is the second button the user pressed,
@@ -249,11 +237,13 @@ void KeypressHandler(int col) {
     {
       secondDigit = newTime;
       totalTime += newTime * 10;
+      storedTime += totalTime;
     } else {
       thirdDigit = newTime; // If this is the third button the user pressed,
                             // change the digit in the seconds place and add
                             // that digit to the total time
       totalTime += newTime;
+      storedTime += totalTime;
     }
     if (timePos <
         3) // Times can only be 3 digits, so if the time is 2 or fewer, let the
@@ -287,15 +277,17 @@ void three(void) {
 }
 
 void A(void) {
-
   // Since all of the number keys have a similar functionality, but the letter
   // keys work differently, handle them here instead of in the same function as
   // the numbers
   if (row == 0) {
     // User pressed A, start the timer
-    timeRunning = 1;
     enteringTime = 0; // Since you could press A to start the timer after only
                       // entering 1 or two digits, remove the prompt as well
+    if(timeRunning == 0 && storedTime != 0)
+
+        totalTime = storedTime;
+    timeRunning = 1;
 
   } else if (row == 1) {
     // User pressed B, stop the timer
@@ -304,8 +296,23 @@ void A(void) {
     display.print("C");
   } else if (row == 3) {
     // User pressed D, show a prompt to input the time
+    timeRunning = 0; //If we're changing the time, stop the time running, because we don't need it
     display.clear();
-    display.print("Enter Time~");
+    display.print("Enter Time~"); // '~' is an arrow on the LCD
     enteringTime = 1;
   }
+}
+
+void displayTime()
+{
+   
+    remainingTime[0] =
+        '0' + firstDigit; //'0' is the character representation of the number 0
+                          // and since the ASCII values for numbers 0-9 are in
+                          // order we can just add the digit to it
+    remainingTime[1] = ':';
+    remainingTime[2] = '0' + secondDigit;
+    remainingTime[3] = '0' + thirdDigit;
+    display.print(remainingTime); // print out the string representation of the
+                                  // 3 digits of time we have
 }
