@@ -58,7 +58,7 @@ char remainingTime[4]; // String representation of remaining time in m:ss format
 bool countingDown = true; // For the bonus, make sure to detect which direction
                           // the user wants to count
 
-CSE321_LCD display(16, 2, LCD_5x10DOTS, PF_0, PF_1);
+CSE321_LCD display(16, 2, LCD_5x10DOTS, PF_0, PF_1); //D68, and D69 on the nucleo
 
 int main() {
 
