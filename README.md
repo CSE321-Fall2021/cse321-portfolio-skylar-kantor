@@ -6,6 +6,6 @@ This is the portfolio repository for my CSE321 (Realtime and Embedded OSes) proj
 
 * Project 2: A timer, that can count down from 9 minutes and 59 seconds or less, displaying the remaining time on an LCD, blinking an LED for each button press, and blinking multiple LEDs when the time is up.
 
-This project covers interrupts, using GPIO through bitwise masking, and planning a project from scratch.
+This project covers interrupts, using GPIO through bitwise masking, the Ticker and EventQueue objects, and planning a project from scratch. It also includes integrating an external library, and building a prototype with actual hardware
 
 * Project 3:
