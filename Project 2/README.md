@@ -26,7 +26,7 @@ Required Materials
 Resources and References
 --------------------
 HOW TO MAKE A README.TXT FILE (https://libraries.ou.edu/content/how-make-readmetxt-file)
-
+Mbed OS Documentation (https://os.mbed.com/docs/mbed-os/v6.15/)
 --------------------
 Getting Started
 --------------------
