@@ -63,4 +63,4 @@ CSE321_project3_alexkant_main.cpp:
 
 -bool is_dewy(int temp, int hum): Based on the temperature and humidity, determine the dewpoint, and whether or not it has been reached
 
--int speed (bool is_dewy, int temp, int hum) based on the weather conditions, determine the safest speed to drive
+-int speed (int temp, int hum) based on the weather conditions, determine the safest speed to drive
