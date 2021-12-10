@@ -1,25 +1,25 @@
-About
-======
+# About
 
-Project Description:
-------
+
+## Project Description:
+
 
 A speed limit sign, that changes the speed limit displayed based on the temperature and humidity
 
-Contribitor List:
-------
+### Contribitor List:
+
 
 Skylar Kantor (alexkant@buffalo.edu)
 
-Features
-------
+### Features
+
 
 - Displays speed limit on 7-segment display
 
 - Lowers speed limit for wet road conditions or possible icing
 
-Required Materials
-------
+### Required Materials
+
 
 - Nucleo L4R5ZI
 
@@ -33,8 +33,8 @@ Required Materials
 
 - 4 LEDs
 
-Resources and References
-------
+### Resources and References
+
 
 - HOW TO MAKE A README.TXT FILE (https://libraries.ou.edu/content/how-make-readmetxt-file) 
 
@@ -44,53 +44,53 @@ Resources and References
 
 - M. G. Lawrence, “The relationship between relative humidity and the dewpoint temperature in moist air: A simple conversion and applications,”Bulletin of the American Meteorological Society, vol. 86, no. 2, pp. 225–234, 2005. 
  
-Getting Started
-======
+# Getting Started
 
-CSE321_project3_alexkant_main.cpp:
-------
+
+## CSE321_project3_alexkant_main.cpp:
+
 
 
 ### Variables Declared
-- Thread readSensor: Thread used for the EventQueue that the function calls for reading the DHT11 are attached to
+- `Thread readSensor`: Thread used for the EventQueue that the function calls for reading the DHT11 are attached to
 
-- Thread findSpeedLimit: Thread used for the EventQueue that the function calls for calculating the speed limit are attached to
+- `Thread findSpeedLimit`: Thread used for the EventQueue that the function calls for calculating the speed limit are attached to
 
-- Thread updateDisplay: Thread used for the EventQueue that the function calls for updating the 7-segment display are attached to
+- `Thread updateDisplay`: Thread used for the EventQueue that the function calls for updating the 7-segment display are attached to
 
-- Thread statusLED: Thread for checking for issues with the DHT11
+- `Thread statusLED`: Thread for checking for issues with the DHT11
 
-- EventQueue displayQueue: Queue of funtion calls to update the 7-segment display
+- `EventQueue displayQueue`: Queue of funtion calls to update the 7-segment display
 
-- EventQueue speedQueue:  Queue of funtion calls to calculate the speed limit
+- `EventQueue speedQueue`:  Queue of funtion calls to calculate the speed limit
 
-- EventQueue sensorQueue: Queue of funtion calls to read the temperature and humidity from the DHT11
+- `EventQueue sensorQueue`: Queue of funtion calls to read the temperature and humidity from the DHT11
 
-- DHT11 sensor: temperature and humidity sensor object
+- `DHT11 sensor`: temperature and humidity sensor object
 
-- DigitDisplay sign: 7-segment display
+- `DigitDisplay sign`: 7-segment display
 
-- int postedLimit: The speed limit in ideal conditions
+- `int postedLimit`: The speed limit in ideal conditions
 
-- int speedLimit: The calculated speed limit
+- `int speedLimit`: The calculated speed limit
 
-- int temperature: The temperature from the DHT11
+- `int temperature`: The temperature from the DHT11
 
-- int humidity: The humidity from the DHT11
+- `int humidity`: The humidity from the DHT11
 
-- int dewDiff: The difference between the current temperature and dew point, if not zero
+- `int dewDiff`: The difference between the current temperature and dew point, if not zero
 
-- int errorNum: either -1 or -2, if the DHT11 reports an issue
+- `int errorNum`: either -1 or -2, if the DHT11 reports an issue
 
-- Mutex tempHumLock: Mutex to protect temperature and humidity values
+- `Mutex tempHumLock`: Mutex to protect temperature and humidity values
 
-- Mutex speedLimitLock: Mutex to protect speed limit
+- `Mutex speedLimitLock`: Mutex to protect speed limit
 
-- Ticker speedTick: Ticker to call function to calculate the speed limit
+- `Ticker speedTick`: Ticker to call function to calculate the speed limit
 
-- Ticker displayTick: Ticker to call function to update the display
+- `Ticker displayTick`: Ticker to call function to update the display
 
-- Ticker sensorTick: Ticker to call function to read the DHT11
+- `Ticker sensorTick`: Ticker to call function to read the DHT11
 
 
 
@@ -110,18 +110,18 @@ CSE321_project3_alexkant_main.cpp:
 
 ### Custom Functions
 
-- bool is_dewy(): Based on the temperature and humidity, determine the dewpoint, and whether or not it has been reached
+- `bool is_dewy()`: Based on the temperature and humidity, determine the dewpoint, and whether or not it has been reached
 
-- void speed(): based on the weather conditions, determine the safest speed to drive
+- `void speed()`: based on the weather conditions, determine the safest speed to drive
 
-- void getTempAndHumidity(): read the temperature and humidity from the DHT11
+- `void getTempAndHumidity()`: read the temperature and humidity from the DHT11
 
-- void displaySpeedLimit(): update the 7-segment display
+- `void displaySpeedLimit()`: update the 7-segment display
 
-- void status(): Check if the DHT11 reported any issues during the last read
+- `void status()`: Check if the DHT11 reported any issues during the last read
 
-- void dispatchTemp(): Add a new call to getTempAndHumidity to the queue
+- `void dispatchTemp()`: Add a new call to getTempAndHumidity to the queue
 
-- void dispatchDisplay(): add a new call to displaySpeedLimit to the queue
+- `void dispatchDisplay()`: add a new call to displaySpeedLimit to the queue
 
-- void dispatchSpeed(): add a new call to speed to the display
+- `void dispatchSpeed()`: add a new call to speed to the display
